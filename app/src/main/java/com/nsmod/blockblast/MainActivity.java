@@ -123,8 +123,11 @@ public class MainActivity extends Activity {
     }
     private String getPref(String k,String d){return getPreferences(0).getString(k,d);}
     private void saveSettings(){
-        getPreferences(0).edit().putString("left",left.getText().toString())
-            .putString("top",top.getText().toString()).putString("cell",cellSize.getText().toString())
+        getPreferences(0).edit()
+            .putString("left", left.getText().toString())
+            .putString("top", top.getText().toString())
+            .putString("cell", cellSize.getText().toString())
+            .apply();
         status.setText("Calibration saved.");
     }
 }
