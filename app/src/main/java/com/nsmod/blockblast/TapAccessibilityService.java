@@ -16,6 +16,15 @@ public class TapAccessibilityService extends AccessibilityService {
     @Override public void onInterrupt() {}
     @Override public void onDestroy() { if(instance==this) instance=null; super.onDestroy(); }
 
+    public void tap(float x, float y) {
+        if (Build.VERSION.SDK_INT < 24) return;
+        Path path = new Path();
+        path.moveTo(x, y);
+        GestureDescription.StrokeDescription stroke =
+            new GestureDescription.StrokeDescription(path, 0, 100);
+        dispatchGesture(new GestureDescription.Builder().addStroke(stroke).build(), null, null);
+    }
+
     public void drag(float fromX, float fromY, float toX, float toY) {
         if (Build.VERSION.SDK_INT < 24) return;
         Path path = new Path();
